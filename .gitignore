@@ -1,0 +1,6 @@
+*.pyc
+*.swp
+build/*
+dist/*
+wechat.egg-info*
+*.DS_Store
