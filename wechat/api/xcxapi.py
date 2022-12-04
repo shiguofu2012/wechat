@@ -52,4 +52,21 @@ class WeappAPI(BaseWechatAPI):
                 params={},
                 req_path=url,
                 data=send_data
-                )
+        )
+
+    def send_subscribe_msg(self,data):
+        url = "https://api.weixin.qq.com/cgi-bin/message/subscribe/send?access_token={}"
+        must_key = ("touser", "template_id", "data")
+        can_be_null_keys = ("page", "miniprogram_state", "lang")
+        send_data = {}
+        for key in must_key:
+            send_data[key] = data[key]
+        for key in can_be_null_keys:
+            value = data.get(key)
+            if value:
+                send_data[key] = value
+        return self._post(
+            params={},
+            req_path=url,
+            data=send_data
+        )
